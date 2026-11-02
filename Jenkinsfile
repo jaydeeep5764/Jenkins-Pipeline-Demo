@@ -3,6 +3,7 @@ pipeline {
 
     options {
         timestamps()
+        skipDefaultCheckout(true)
     }
 
     stages {
@@ -15,29 +16,29 @@ pipeline {
         stage('Verify Tools') {
             steps {
                 sh 'git --version'
-                sh 'python --version'
+                sh 'python3 --version'
             }
         }
 
         stage('Python Syntax Check') {
             steps {
-                sh 'python -m py_compile program1.py'
+                sh 'python3 -m py_compile program1.py'
             }
         }
 
         stage('Build Complete') {
             steps {
-                sh 'Jenkins pipeline completed successfully.'
+                echo 'Jenkins pipeline completed successfully.'
             }
         }
     }
 
     post {
         success {
-            sh 'Build passed.'
+            echo 'Build passed.'
         }
         failure {
-            sh 'Build failed. Check the console output.'
+            echo 'Build failed. Check the console output.'
         }
     }
 }
