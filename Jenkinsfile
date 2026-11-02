@@ -22,7 +22,7 @@ pipeline {
 
         stage('Python Syntax Check') {
             steps {
-                sh 'python3 -m py_compile program1.py'
+                sh 'python3 -m py_compile program2.py'
             }
         }
 
